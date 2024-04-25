@@ -30,7 +30,7 @@
 | delivery_charge_id    | integer    | null: false                    | 配送料の負担 / ActiveHash
 | shipping_address_id   | integer    | null: false                    | 発送元の地域  / ActiveHash
 | delivery_time_id      | integer    | null: false                    | 発送までの日数 / ActiveHash
-| price                 | string     | null: false                    |
+| price                 | integer    | null: false                    |
 | user                  | references | null: false, foreign_key: true	| 外部キー
 
 ### Association
@@ -51,14 +51,14 @@
 -belongs_to :item
 
 
-## delivery_address テーブル
+## delivery_addresses テーブル
 
 | Column         | Type       | Options                        |
 | -------------- | ------     | ------------------------------ |
-| postal_code    | integer    | null: false                    | 郵便番号
+| postal_code    | string     | null: false                    | 郵便番号
 | prefecture_id  | integer    | null: false                    | 都道府県 / ActiveHash
 | city           | string     | null: false                    | 市区町村
-| street_address | text       | null: false                    | 番地
+| street_address | string     | null: false                    | 番地
 | building_name  | string     |                                | 建物名
 | phone_number   | string     | null: false                    | 電話番号
 | order          | references | null: false, foreign_key: true | 外部キー
