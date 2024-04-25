@@ -10,7 +10,7 @@
 | encrypted_password    | string | null: false               |
 | last_name             | string | null: false               |
 | first_name            | string | null: false               |
-| last_name_ kana       | string | null: false               |
+| last_name_kana        | string | null: false               |
 | first_name_kana       | string | null: false               |
 | birth_day             | date   | null: false               |
 
@@ -53,15 +53,15 @@
 
 ## delivery_addresses テーブル
 
-| Column         | Type       | Options                        |
-| -------------- | ------     | ------------------------------ |
-| postal_code    | string     | null: false                    | 郵便番号
-| prefecture_id  | integer    | null: false                    | 都道府県 / ActiveHash
-| city           | string     | null: false                    | 市区町村
-| street_address | string     | null: false                    | 番地
-| building_name  | string     |                                | 建物名
-| phone_number   | string     | null: false                    | 電話番号
-| order          | references | null: false, foreign_key: true | 外部キー
+| Column              | Type       | Options                        |
+| ------------------- | ---------- | ------------------------------ |
+| postal_code         | string     | null: false                    | 郵便番号
+| shipping_address_id | integer    | null: false                    | 都道府県 / ActiveHash
+| city                | string     | null: false                    | 市区町村
+| street_address      | string     | null: false                    | 番地
+| building_name       | string     |                                | 建物名
+| phone_number        | string     | null: false                    | 電話番号
+| order               | references | null: false, foreign_key: true | 外部キー
 
 ### Association
 -belongs_to :order
