@@ -179,11 +179,5 @@ RSpec.describe User, type: :model do
       end
     end
   end
-
-  describe 'ユーザーログイン' do
-    context 'ログインが出来るとき' do
-    end
-    context 'ログインが出来ないとき' do
-    end
-  end
+  
 end
