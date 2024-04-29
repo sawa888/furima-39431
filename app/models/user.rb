@@ -15,16 +15,21 @@ class User < ApplicationRecord
   validates :birth_day, presence: true
 
   # 漢字のバリデーション
-  validates :first_name, format: { with: /\A[一-龥々]+\z/, message: "苗字は全角漢字で入力してください" }
-  validates :last_name, format: { with: /\A[一-龥々]+\z/, message: "名前は全角漢字で入力してください" }
+  validates :first_name, format: { with: /\A[一-龥々]+\z/, message: 'is invalid. Input full-width characters' }
+  # validates :first_name, format: { with: /\A[一-龥々]+\z/ }
+  validates :last_name, format: { with: /\A[一-龥々]+\z/, message: 'is invalid. Input full-width characters' }
+  # validates :last_name, format: { with: /\A[一-龥々]+\z/ }
 
   # 全角カナのバリデーション
-  validates :first_name_kana, format: { with: /\A[ァ-ヶー－]+\z/, message: "苗字は全角カタカナで入力してください" }
-  validates :last_name_kana, format: { with: /\A[ァ-ヶー－]+\z/, message: "名前は全角カタカナで入力してください" }
+  validates :first_name_kana, format: { with: /\A[ァ-ヶー－]+\z/, message: 'is invalid. Input full-width katakana characters' }
+  # validates :first_name_kana, format: { with: /\A[ァ-ヶー－]+\z/ }
+  validates :last_name_kana, format: { with: /\A[ァ-ヶー－]+\z/, message: 'is invalid. Input full-width katakana characters' }
+  # validates :last_name_kana, format: { with: /\A[ァ-ヶー－]+\z/ }
 
   # 英字と数字混合のバリデーション
   PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
-  validates_format_of :password, with: PASSWORD_REGEX, message: 'passwordには英字と数字の両方を含めて設定してください' 
+  # validates_format_of :password, with: PASSWORD_REGEX, message: 'passwordには英字と数字の両方を含めて設定してください' 
+  validates_format_of :password, with: PASSWORD_REGEX, message: ' is invalid. Include both letters and numbers' 
 
 
  
