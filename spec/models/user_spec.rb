@@ -24,19 +24,35 @@ RSpec.describe User, type: :model do
         @user.password_confirmation = 'aaa000'
         expect(@user).to be_valid
       end
-      it '苗字が全角(漢字、カタナカ、ひらがな)であれば登録出来る' do
+      it '苗字が全角(漢字)であれば登録出来る' do
         @user.first_name = '山田'
         expect(@user).to be_valid
       end
-      it '名前が全角(漢字、カタナカ、ひらがな)であれば登録出来る' do
+      it '苗字が全角(カタナカ)であれば登録出来る' do
+        @user.first_name = 'ヤマダ'
+        expect(@user).to be_valid
+      end
+      it '苗字が全角(ひらがな)であれば登録出来る' do
+        @user.first_name = 'やまだ'
+        expect(@user).to be_valid
+      end
+      it '名前が全角(漢字)であれば登録出来る' do
         @user.last_name = '太郎'
         expect(@user).to be_valid
       end
-      it '苗字が全角カタカナであれば登録出来る' do
+      it '名前が全角(カタナカ)であれば登録出来る' do
+        @user.last_name = 'タロウ'
+        expect(@user).to be_valid
+      end
+      it '名前が全角(ひらがな)であれば登録出来る' do
+        @user.last_name = 'タロウ'
+        expect(@user).to be_valid
+      end
+      it '苗字カナが全角カタカナであれば登録出来る' do
         @user.first_name_kana = 'ヤマダ'
         expect(@user).to be_valid
       end
-      it '名前が全角カタカナであれば登録出来' do
+      it '名前カナが全角カタカナであれば登録出来' do
         @user.last_name_kana = 'タロウ'
         expect(@user).to be_valid
       end
@@ -56,6 +72,18 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("Email can't be blank")
       end
+      it '重複したemailでは登録できない' do
+        @user.save
+        another_user = FactoryBot.build(:user)
+        another_user.email = @user.email
+        another_user.valid?
+        expect(another_user.errors.full_messages).to include('Email has already been taken')
+      end
+      it 'emailに"@"が含まれていないと登録できない' do
+        @user.email = 'testtest.com'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Email is invalid')
+      end
       it 'passwordが空では登録出来ない' do
         @user.password = ''
         @user.valid?
@@ -72,6 +100,24 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password",
                                                       'Password is too short (minimum is 6 characters)')
+      end
+      it 'passwordが6文字以上の数字のみでは登録出来ない' do
+        @user.password = '000000'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password",
+                                                      'Password  is invalid. Include both letters and numbers')
+      end
+      it 'passwordが6文字以上の英字のみでは登録出来ない' do
+        @user.password = 'aaaaaa'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password",
+                                                      'Password  is invalid. Include both letters and numbers')
+      end
+      it '6文字以上の全角を含むpasswordでは登録出来ない' do
+        @user.password = '山田aaa000'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password",
+                                                      'Password  is invalid. Include both letters and numbers')
       end
       it 'password_confirmationが存在していないと登録出来ない' do
         @user.password = ''

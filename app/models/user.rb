@@ -4,8 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :orders
-  has_many :items
+  # has_many :orders
+  # has_many :items
 
   validates :nickname, presence: true
   validates :last_name, presence: true
@@ -15,8 +15,10 @@ class User < ApplicationRecord
   validates :birth_day, presence: true
 
   # 漢字のバリデーション
-  validates :first_name, format: { with: /\A[一-龥々]+\z/, message: 'is invalid. Input full-width characters' }
-  validates :last_name, format: { with: /\A[一-龥々]+\z/, message: 'is invalid. Input full-width characters' }
+  # validates :first_name, format: { with: /\A[一-龥々]+\z/, message: 'is invalid. Input full-width characters' }
+  validates :first_name, format: { with: /\A[一-龥ぁ-んァ-ヶ]+\z/, message: 'is invalid. Input full-width characters' }
+  # validates :last_name, format: { with: /\A[一-龥々]+\z/, message: 'is invalid. Input full-width characters' }
+  validates :last_name, format: { with: /\A[一-龥ぁ-んァ-ヶ]+\z/, message: 'is invalid. Input full-width characters' }
 
   # 全角カナのバリデーション
   validates :first_name_kana, format: { with: /\A[ァ-ヶー－]+\z/, message: 'is invalid. Input full-width katakana characters' }
