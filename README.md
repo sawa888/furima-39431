@@ -23,15 +23,15 @@
 
 | Column                | Type       | Options                        | 
 | -------------------- -| ---------- | ------------------------------ | 
-| product_name          | string     | null: false                    | 商品名
-| present               | text       | null: false                    | 商品の説明
-| category_id           | integer    | null: false                    | カテゴリー / ActiveHash
-| condition_id          | integer    | null: false                    | 商品の状態 / ActiveHash
-| delivery_charge_id    | integer    | null: false                    | 配送料の負担 / ActiveHash
-| shipping_address_id   | integer    | null: false                    | 発送元の地域  / ActiveHash
-| delivery_time_id      | integer    | null: false                    | 発送までの日数 / ActiveHash
-| price                 | integer    | null: false                    |
-| user                  | references | null: false, foreign_key: true	| 外部キー
+|           |      |                     | 商品名
+|                |        |                   | 商品の説明
+|           |     |                     | カテゴリー / ActiveHash
+|           |     |                     | 商品の状態 / ActiveHash
+| d    |     |                    | 配送料の負担 / ActiveHash
+|    |     |                     | 発送元の地域  / ActiveHash
+|       |    |                     | 発送までの日数 / ActiveHash
+|                  |     |                    |
+|                  |  | 	| 外部キー
 
 ### Association
 -belongs_to :user
