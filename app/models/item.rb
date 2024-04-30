@@ -2,6 +2,7 @@ class Item < ApplicationRecord
 
   belongs_to :user
   # has_one :order
+  has_one_attached :image
 
   validates :product_name, presence: true
   validates :present, presence: true
@@ -12,6 +13,7 @@ class Item < ApplicationRecord
   validates :delivery_time_id, presence: true
   validates :price, presence: true
   validates :user, presence: true, foreign_key: true
+  validates :image, presence: true
 
 
 end
