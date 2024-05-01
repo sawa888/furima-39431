@@ -1,8 +1,22 @@
 class Item < ApplicationRecord
+  # ActiveHash のアソシエーション
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to :category
+  belongs_to :condition
+  belongs_to :delivery_charge
+  belongs_to :shipping_address
+  belongs_to :delivery_time
 
+
+  # テーブルとのアソシエーション
   belongs_to :user
   # has_one :order
+
+
+  # active_storageとのアソシエーション
   has_one_attached :image
+
+
 
   validates :product_name, presence: true
   validates :present, presence: true
