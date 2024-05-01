@@ -29,5 +29,12 @@ class Item < ApplicationRecord
   validates :user, presence: true, foreign_key: true
   validates :image, presence: true
 
+  # 「価格は、¥300~¥9,999,999の間のみ保存可能である」のバリデーション
+  validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
+
+  # 「価格は半角数値のみ保存可能であること」のバリデーション
+  validates :price, numericality: { only_integer: true }
+
+
 
 end
