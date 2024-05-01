@@ -11,13 +11,10 @@ class Item < ApplicationRecord
   # テーブルとのアソシエーション
   belongs_to :user
   # has_one :order
-
-
   # active_storageとのアソシエーション
   has_one_attached :image
 
-
-
+  
   validates :product_name, presence: true
   validates :present, presence: true
   validates :category_id, presence: true
@@ -26,7 +23,10 @@ class Item < ApplicationRecord
   validates :shipping_address_id, presence: true
   validates :delivery_time_id, presence: true
   validates :price, presence: true
-  validates :user, presence: true, foreign_key: true
+  # validates :user_id, presence: true, foreign_key: true
+  validates :user_id, presence: true
+
+  # 画像が１枚無いと保存出来ないバリデーション
   validates :image, presence: true
 
   # 「価格は、¥300~¥9,999,999の間のみ保存可能である」のバリデーション
