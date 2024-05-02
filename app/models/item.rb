@@ -7,7 +7,6 @@ class Item < ApplicationRecord
   belongs_to :shipping_address
   belongs_to :delivery_time
 
-
   # テーブルとのアソシエーション
   belongs_to :user
   # has_one :order
@@ -15,7 +14,8 @@ class Item < ApplicationRecord
   # active_storageとのアソシエーション
   has_one_attached :image
 
-  
+
+  # バリデーション
   validates :product_name, presence: true
   validates :present, presence: true
   validates :category_id, presence: true
@@ -36,6 +36,9 @@ class Item < ApplicationRecord
   # 「価格は半角数値のみ保存可能であること」のバリデーション
   validates :price, numericality: { only_integer: true }
 
+  # ActiveHashのバリデーション
+  #ジャンルの選択が「---」の時は保存できないようにする
+  validates :
 
 
 end
