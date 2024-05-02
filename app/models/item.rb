@@ -38,7 +38,12 @@ class Item < ApplicationRecord
 
   # ActiveHashのバリデーション
   #ジャンルの選択が「---」の時は保存できないようにする
-  validates :
+  validates :category_id, numericality:{ other_than: 0 }
+  validates :condition_id, numericality:{ other_than: 0 }
+  validates :delivery_charge_id, numericality:{ other_than: 0 }
+  validates :shipping_address_id, numericality:{ other_than: 0 }
+  validates :delivery_time_id, numericality:{ other_than: 0 ,message: "can't be blank" }
+
 
 
 end
