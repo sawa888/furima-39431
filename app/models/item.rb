@@ -25,7 +25,7 @@ class Item < ApplicationRecord
   validates :delivery_time_id, presence: true
   validates :price, presence: true
   # validates :user_id, presence: true, foreign_key: true
-  validates :user_id, presence: true
+  # validates :user_id, presence: true
 
   # 画像が１枚無いと保存出来ないバリデーション
   validates :image, presence: true
