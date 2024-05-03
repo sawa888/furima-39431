@@ -30,11 +30,11 @@ class Item < ApplicationRecord
   # 画像が１枚無いと保存出来ないバリデーション
   validates :image, presence: true
 
-  # 「価格は、¥300~¥9,999,999の間のみ保存可能である」のバリデーション
-  validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
+  # 「価格は半角数値のみ保存可能であること」のバリデーション及び、「価格は、¥300~¥9,999,999の間のみ保存可能である」のバリデーション。
+  validates :price, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
 
   # 「価格は半角数値のみ保存可能であること」のバリデーション
-  validates :price, numericality: { only_integer: true }
+  # validates :price, numericality: { only_integer: true }
 
   # ActiveHashのバリデーション
   #ジャンルの選択が「---」の時は保存できないようにする
