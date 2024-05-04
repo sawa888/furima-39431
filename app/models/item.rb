@@ -10,10 +10,9 @@ class Item < ApplicationRecord
   # テーブルとのアソシエーション
   belongs_to :user
   # has_one :order
-  
+
   # active_storageとのアソシエーション
   has_one_attached :image
-
 
   # バリデーション
   validates :product_name, presence: true
@@ -37,13 +36,10 @@ class Item < ApplicationRecord
   # validates :price, numericality: { only_integer: true }
 
   # ActiveHashのバリデーション
-  #ジャンルの選択が「---」の時は保存できないようにする
-  validates :category_id, numericality:{ other_than: 0 }
-  validates :condition_id, numericality:{ other_than: 0 }
-  validates :delivery_charge_id, numericality:{ other_than: 0 }
-  validates :shipping_address_id, numericality:{ other_than: 0 }
-  validates :delivery_time_id, numericality:{ other_than: 0 ,message: "can't be blank" }
-
-
-
+  # ジャンルの選択が「---」の時は保存できないようにする
+  validates :category_id, numericality: { other_than: 0 }
+  validates :condition_id, numericality: { other_than: 0 }
+  validates :delivery_charge_id, numericality: { other_than: 0 }
+  validates :shipping_address_id, numericality: { other_than: 0 }
+  validates :delivery_time_id, numericality: { other_than: 0, message: "can't be blank" }
 end
