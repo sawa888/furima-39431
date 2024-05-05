@@ -14,17 +14,16 @@
       <%# <div class="sold-out">
         <span>Sold Out!!</span>
       </div> %>
-      <%# //商品が売れている場合は、sold outを表示しましょう %>
+
     </div>
     <div class="item-price-box">
       <span class="item-price">
-        <%= @item.price %>円
+        ￥<%= @item.price %>
       </span>
       <span class="item-postage">
         <%= @item.delivery_charge.name %>
       </span>
     </div>
-
 
     <%# ログイン中であれば、実行する %>
     <% if user_signed_in? %>
@@ -47,27 +46,27 @@
       <tbody>
         <tr>
           <th class="detail-item">出品者</th>
-          <td class="detail-value"><%= "出品者名" %></td>
+          <td class="detail-value"><%= @item.user.nickname  %></td>
         </tr>
         <tr>
           <th class="detail-item">カテゴリー</th>
-          <td class="detail-value"><%= "カテゴリー名" %></td>
+          <td class="detail-value"><%= @item.category.name %></td>
         </tr>
         <tr>
           <th class="detail-item">商品の状態</th>
-          <td class="detail-value"><%= "商品の状態" %></td>
+          <td class="detail-value"><%= @item.condition.name %></td>
         </tr>
         <tr>
           <th class="detail-item">配送料の負担</th>
-          <td class="detail-value"><%= "発送料の負担" %></td>
+          <td class="detail-value"><%= @item.delivery_charge.name %></td>
         </tr>
         <tr>
           <th class="detail-item">発送元の地域</th>
-          <td class="detail-value"><%= "発送元の地域" %></td>
+          <td class="detail-value"><%= @item.shipping_address.name %></td>
         </tr>
         <tr>
           <th class="detail-item">発送日の目安</th>
-          <td class="detail-value"><%= "発送日の目安" %></td>
+          <td class="detail-value"><%= @item.delivery_time.name %></td>
         </tr>
       </tbody>
     </table>
@@ -107,8 +106,7 @@
     </a>
   </div>
   <%# 詳細ページで表示されている商品のカテゴリー名を表示しましょう %>
-  <a href="#" class="another-item"><%= "商品のカテゴリー名" %>をもっと見る</a>
-  <%# //詳細ページで表示されている商品のカテゴリー名を表示しましょう %>
+  <a href="#" class="another-item"><%= @item.category.name %>をもっと見る</a>
 </div>
 
 <%= render "shared/footer" %>

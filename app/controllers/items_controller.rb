@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   # ログインしていないユーザーはログインページへ遷移させる。
-  before_action :authenticate_user!, except: [:index]
+  before_action :authenticate_user!, except: [:index, :show]
 
   # ※N-1問題解決。一覧降順表示
   def index
