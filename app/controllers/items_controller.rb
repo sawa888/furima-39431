@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   # ログインしていないユーザーはログインページへ遷移させる。
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_item, only: [:show, :edit, :update]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
 
   # ※N-1問題解決。一覧降順表示
   def index
@@ -39,7 +39,12 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    
+    if @item.user_id == current_user.id
+      @item.destroy
+      redirect_to root_path
+    else
+      render :index
+    end
   end
 
 
