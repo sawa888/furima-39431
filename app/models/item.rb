@@ -6,6 +6,7 @@ class Item < ApplicationRecord
   belongs_to :delivery_charge
   belongs_to :shipping_address
   belongs_to :delivery_time
+  has_one :order
 
   # テーブルとのアソシエーション
   belongs_to :user
