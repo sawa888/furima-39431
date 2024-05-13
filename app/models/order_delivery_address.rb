@@ -21,10 +21,18 @@ class OrderDeliveryAddress
     validates :street_address    
     validates :phone_number      
     validates :order,               foreign_key: true
-    
+
+  end
+
+  def save
+    # 商品情報(order情報)を保存し、変数orderに代入する。
+    oeder = Order.create(user_id: user_id, item_id: item_id)
+    # 上記で、変数orderが生成され、「order.id」が生成される。
+    # ストロングパラメーターにて、order_idカラムに「order.id」を保存できるようになる。
+    delivery_address.create(order_id: order.id, postal_code: postal_code, shipping_address_id: shipping_address_id, city: city, street_address: street_address, building_name: building_name, phone_number: phone_number)
   end
   
-
+end
 
   
 
