@@ -12,12 +12,14 @@ class OrderDeliveryAddress
     validates :item_id               
     # delivery_addressテーブルのバリデーション
     # 半角数字３文字＋ハイフン「-」＋半角数字４文字のバリデーション
-    validates :postal_code,         format: { with: /\A[0-9]{3}-[0-9]{4}\z/}
+    validates :postal_code,         format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Enter it as follows (e.g. 123-4567)" }
     # ActiveHashの添え字「０」を許可しないバリデーション
     validates :shipping_address_id, numericality: { other_than: 0, message: "can't be blank" }
     validates :city             
-    validates :street_address    
-    validates :phone_number      
+    validates :street_address 
+    validates :phone_number, presence: { message: "can't be blank" }  
+    validates :phone_number, presence: { message: "is too short" }  
+    validates :phone_number, presence: { message: "is invalid. Input only number" }          
     # validates :order              
   end
 
