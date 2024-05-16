@@ -14,7 +14,7 @@ class OrderDeliveryAddress
     # 半角数字３文字＋ハイフン「-」＋半角数字４文字のバリデーション
     validates :postal_code,         format: { with: /\A[0-9]{3}-[0-9]{4}\z/}
     # ActiveHashの添え字「０」を許可しないバリデーション
-    validates :shipping_address_id, numericality: { other_than: 0 }
+    validates :shipping_address_id, numericality: { other_than: 0, message: "can't be blank" }
     validates :city             
     validates :street_address    
     validates :phone_number      
