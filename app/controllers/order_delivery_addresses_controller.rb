@@ -9,6 +9,12 @@ class OrderDeliveryAddressesController < ApplicationController
 
  def create
   @order_delivery_address = OrderDeliveryAddress.new(order_delivery_address_params)
+  if @order_delivery_address.valid?
+    @order_delivery_address.save
+    redirect_to root_path
+  else
+    render :index, status: :unprocessable_entity 
+  end
 end
 
 
