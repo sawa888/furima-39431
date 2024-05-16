@@ -8,8 +8,8 @@ class OrderDeliveryAddress
   # ordersテーブルとdelivery_addressesテーブルのバリデーションを記述(移動)
   with_options presence: true do 
     # orderテーブルのバリデーション
-    validates :user               
-    validates :item               
+    validates :user_id               
+    validates :item_id               
     # delivery_addressテーブルのバリデーション
     # 半角数字３文字＋ハイフン「-」＋半角数字４文字のバリデーション
     validates :postal_code,         format: { with: /\A[0-9]{3}-[0-9]{4}\z/}
@@ -26,7 +26,7 @@ class OrderDeliveryAddress
     order = Order.create(user_id: user_id, item_id: item_id)
     # 上記で、変数orderが生成され、「order.id」が生成される。
     # ストロングパラメーターにて、order_idカラムに「order.id」を保存できるようになる。
-    delivery_address.create(order_id: order.id, postal_code: postal_code, shipping_address_id: shipping_address_id, city: city, street_address: street_address, building_name: building_name, phone_number: phone_number)
+    DeliveryAddress.create(order_id: order.id, postal_code: postal_code, shipping_address_id: shipping_address_id, city: city, street_address: street_address, building_name: building_name, phone_number: phone_number)
   end
   
 end
