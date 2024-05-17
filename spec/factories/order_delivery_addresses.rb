@@ -8,6 +8,8 @@ FactoryBot.define do
       city                { Faker::Address.city }
       street_address      { Faker::Address.street_address }
       building_name       { "柳ビル" }
-      phone_number        { Faker::PhoneNumber.unique.cell_phone_in_e164.slice(0, 11) }
+      # phone_number        { Faker::PhoneNumber.unique.cell_phone_in_e164.slice(0, 11) }
+      phone_number        { "09012345678" }
+      # phone_number        { 0 + Faker::Number.number(digits: rand(10..11)) }
   end
 end
