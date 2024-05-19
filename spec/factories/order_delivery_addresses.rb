@@ -11,5 +11,6 @@ FactoryBot.define do
       # phone_number        { Faker::PhoneNumber.unique.cell_phone_in_e164.slice(0, 11) }
       phone_number        { "09012345678" }
       # phone_number        { 0 + Faker::Number.number(digits: rand(10..11)) }
+      token               { "tok_abcdefghijk00000000000000000" }
   end
 end

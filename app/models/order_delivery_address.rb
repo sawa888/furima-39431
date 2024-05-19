@@ -3,7 +3,7 @@ class OrderDeliveryAddress
   # include を使用し、N+1問題解消
   include ActiveModel::Model 
   # attr_accessor を使用し、保存したいカラム名を属性値として扱えるようにする
-  attr_accessor :user_id, :item_id, :token, :postal_code, :shipping_address_id, :city, :street_address, :building_name, :phone_number, :order_id 
+  attr_accessor :user_id, :item_id, :token, :postal_code, :shipping_address_id, :city, :street_address, :building_name, :phone_number, :order_id, :token 
   
   # ordersテーブルとdelivery_addressesテーブルのバリデーションを記述(移動)
   with_options presence: true do 
@@ -22,7 +22,8 @@ class OrderDeliveryAddress
     validates :phone_number, presence: { message: "can't be blank" }  
     validates :phone_number, presence: { message: "is too short" }  
     validates :phone_number, presence: { message: "is invalid. Input only number" }          
-    # validates :order              
+    # validates :order    
+    validates :token          
   end
 
   def save
