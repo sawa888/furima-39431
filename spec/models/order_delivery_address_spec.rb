@@ -85,17 +85,17 @@ RSpec.describe OrderDeliveryAddress, type: :model do
       it '電話番号が9桁以下では登録できない' do
         @order_delivery_address.phone_number = "123456789"
         @order_delivery_address.valid?
-        expect(@order_delivery_address.errors.full_messages).to include( "Phone number is invalid" )
+        expect(@order_delivery_address.errors.full_messages).to include( "Phone number is invalid. Input only number" )
       end
       it '電話番号が12桁以上では登録できない' do
         @order_delivery_address.phone_number = "123456789012"
         @order_delivery_address.valid?
-        expect(@order_delivery_address.errors.full_messages).to include( "Phone number is invalid" )
+        expect(@order_delivery_address.errors.full_messages).to include( "Phone number is invalid. Input only number" )
       end
       it '電話番号にハイフンがあると登録出来ない' do
         @order_delivery_address.phone_number = "123-456-789"
         @order_delivery_address.valid?
-        expect(@order_delivery_address.errors.full_messages).to include( "Phone number is invalid" )
+        expect(@order_delivery_address.errors.full_messages).to include( "Phone number is invalid. Input only number" )
       end
       it "tokenが空では登録できない" do
         @order_delivery_address.token = nil 
