@@ -1,7 +1,5 @@
 class DeliveryAddress < ApplicationRecord
-
   belongs_to :order
-
 
   # order_delivery_address.rbへ移動
   # 半角数字３文字＋ハイフン「-」＋半角数字４文字のバリデーション
@@ -12,5 +10,4 @@ class DeliveryAddress < ApplicationRecord
   # validates :street_address,      presence: true
   # validates :phone_number ,       presence: true
   # validates :order ,              presence: true, foreign_key: true
-  
 end
