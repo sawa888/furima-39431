@@ -4,6 +4,10 @@ class OrderDeliveryAddressesController < ApplicationController
   before_action :set_order_delivery_address, only: [:index, :create]
 
  def index
+  if current_user.id == @item.user_id && @item.order.nil?
+  else
+    redirect_to root_path
+  end
   gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
   @order_delivery_address = OrderDeliveryAddress.new
  end
@@ -19,6 +23,7 @@ class OrderDeliveryAddressesController < ApplicationController
     gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
     render :index, status: :unprocessable_entity 
   end
+  
 end
 
 

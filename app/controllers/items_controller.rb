@@ -22,12 +22,16 @@ class ItemsController < ApplicationController
   end
 
   def show
+    
   end
 
   def edit
-    return if @item.user_id == current_user.id
-
-    redirect_to root_path
+    if @item.user_id == current_user.id && @item.order.nil?
+    else
+      redirect_to root_path
+    end
+    # return if @item.user_id == current_user.id
+    # redirect_to root_path
   end
 
   def update
