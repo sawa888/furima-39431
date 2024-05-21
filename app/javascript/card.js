@@ -22,8 +22,6 @@ const pay = () => {
         //「type="hidden"」でトークンの値(カード情報)を非表示
         const tokenObj = `<input value=${token} name='token' type="hidden">`;
         renderDom.insertAdjacentHTML("beforeend", tokenObj);
-        // debugger;
-        // console.log(token)
       }
       //クレジットカードの情報を削除
       numberElement.clear();
