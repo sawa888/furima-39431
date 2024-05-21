@@ -96,6 +96,11 @@ RSpec.describe OrderDeliveryAddress, type: :model do
         @order_delivery_address.valid?
         expect(@order_delivery_address.errors.full_messages).to include('Phone number is invalid. Input only number')
       end
+      it '電話番号が空では登録出来ない' do
+        @order_delivery_address.phone_number = ''
+        @order_delivery_address.valid?
+        expect(@order_delivery_address.errors.full_messages).to include("Phone number can't be blank")
+      end
       it 'tokenが空では登録できない' do
         @order_delivery_address.token = nil
         @order_delivery_address.valid?
