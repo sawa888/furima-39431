@@ -24,17 +24,15 @@ const pay = () => {
       } else {
         const token = response.id;
         // トークンの値をフォームに含める
-        const renderDom = document.getElementById("charge-form");
-        // 「type="hidden"」でトークンの値(カード情報)を非表示
-        const tokenObj = `<input value=${token} name='token' type="hidden">`;
-        renderDom.insertAdjacentHTML("beforeend", tokenObj);
+        const tokenInput = `<input type="hidden" name="token" value="${token}">`;
+        form.insertAdjacentHTML("beforeend", tokenInput);
+        // フォームの情報をサーバーサイドに送信
+        form.submit();
       }
       // クレジットカードの情報を削除
       numberElement.clear();
       expiryElement.clear();
       cvcElement.clear();
-      // フォームの情報をサーバーサイドに送信
-      document.getElementById("charge-form").submit();
     });
   });
 };
